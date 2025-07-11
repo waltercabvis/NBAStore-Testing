@@ -1,6 +1,7 @@
 package Pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -39,5 +40,24 @@ public class BuscadorPage {
         for (WebElement item : masBuscadoLista){
             System.out.println("- " + item.getText().trim());
         }
+
+        WebElement buscador1 = wait.until(ExpectedConditions.elementToBeClickable(buscadorXpath));
+        buscador1.sendKeys("Lakers");
+        buscador1.sendKeys(Keys.ENTER);
+
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertTrue(currentUrl.contains("lakers"), "La URL no contiene 'lakers'. No se está mostrando la búsqueda correcta.");
+
+        WebElement cantidadProductos = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'vtex-search-result-3-x-totalProducts--layout pv5 ph9 bn-ns bt-s b--muted-5 tc-s tl t-action--small')]")));
+        String text = cantidadProductos.getText();
+
+        String cantProdString = text.replaceAll("\\D", "");
+        int cantProd = 0;
+        if (!cantProdString.isEmpty()) {
+            cantProd = Integer.parseInt(cantProdString);
+        }
+
+        Assert.assertTrue(cantProd > 0, "Se espera que haya productos, pero no se encontraron.");
+        System.out.println("Se han encontrado: " + cantProd + " productos de los Lakers.");
     }
 }

@@ -33,10 +33,12 @@ public class JugadoresPage {
         actions.moveToElement(jugadores).perform();
 
         WebElement menu = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[normalize-space()='Actuales']")));
-        Assert.assertEquals("Actuales", "Actuales");
+        String textoObtenido = menu.getText();
+        Assert.assertEquals(textoObtenido, "Actuales", "El texto del menú no coincide con 'Actuales'");
 
         WebElement menu1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[normalize-space()='Históricos']")));
-        Assert.assertEquals("Históricos", "Históricos");
+        String textoObtenido1 = menu1.getText();
+        Assert.assertEquals(textoObtenido1, "Históricos", "El texto del menú no coincide con 'Históricos'");
 
         List<WebElement> cantidadDeJugadores = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//p[contains(@class, 'vtex-rich-text-0-x-paragraph') and contains(@class, 'vtex-rich-text-0-x-paragraph--textmenuPlayers')]")));
         System.out.println("Jugadores encontrados: " + cantidadDeJugadores.size());

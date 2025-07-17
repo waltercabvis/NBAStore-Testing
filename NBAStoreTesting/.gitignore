@@ -45,3 +45,6 @@ build/
 
 # Archivos de variables de entorno
 .env
+
+# No subir credenciales de prueba
+src/test/resources/credentials.properties

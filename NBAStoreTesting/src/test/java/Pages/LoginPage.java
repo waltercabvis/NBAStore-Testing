@@ -1,7 +1,7 @@
 package Pages;
 
+import DriverManager.Utils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -40,8 +40,8 @@ public class LoginPage {
         String url = driver.getCurrentUrl();
         Assert.assertEquals(url, "https://www.nbastore.com.ar/login?returnUrl=%2Faccount", "No se ingresó al login correctamente");
 
-        String mail = "waltertests@hotmail.com";
-        String pass = "Pruebatest123";
+        String mail = Utils.getEmail();
+        String pass = Utils.getPassword();
 
         WebElement cuenta = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Ej.: ejemplo@mail.com']")));
         wait.until(ExpectedConditions.elementToBeClickable(cuenta));

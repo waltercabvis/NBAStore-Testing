@@ -1,15 +1,13 @@
+# Ignorar carpetas de build de Maven
 target/
-!.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# IDEs
 ### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-*.iws
+.idea/
 *.iml
+*.iws
 *.ipr
 
 ### Eclipse ###
@@ -17,7 +15,7 @@ target/
 .classpath
 .factorypath
 .project
-.settings
+.settings/
 .springBeans
 .sts4-cache
 
@@ -37,14 +35,12 @@ build/
 ### Mac OS ###
 .DS_Store
 
-# Capturas de pantalla y Logs generados durante las pruebas
-/Reportes/
+# Archivos sensibles
+.env
+src/test/resources/credentials.properties
+
+# Logs y capturas (excepto los de reportes)
 *.log
 *.screenshot
 *.png
-
-# Archivos de variables de entorno
-.env
-
-# No subir credenciales de prueba
-src/test/resources/credentials.properties
+!src/test/resources/reportes/**
